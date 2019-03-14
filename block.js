@@ -9,6 +9,13 @@ class Block {
     }
 }
 
-const  block1 = new Block('01/01/01','foo-lastHash','foo-hash','foo-data')
+const  block1 = new Block({
+    hash:'foo-lastHash',
+    lastHash:'foo-hash',
+    timestamp:'01/01/01',
+    data:'foo-data'
+})
 
 console.log(block1)
+
+module.exports = Block;
