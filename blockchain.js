@@ -25,11 +25,11 @@ static isValidChain(chain) {
 
     for (let i=0;i<chain.length;i++){
 
-     const block = chain[i]
-
-     const actualLastHash = chain[i-1].hash;
-
-     const { timestamp, data, lastHash, hash} = block;
+        
+        const { timestamp, data, lastHash, hash} = chain[i];
+        
+        const actualLastHash = chain[i-1].hash;
+        
 
     }
 
@@ -39,8 +39,9 @@ static isValidChain(chain) {
 
     if( hash !== validatedHash)  return false;
 
-    return true
+                return true
 }
+
 }
 
 module.exports = Blockchain;
