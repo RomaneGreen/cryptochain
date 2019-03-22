@@ -4,7 +4,7 @@ const cryptoHash = require('./crypto-hash')
 
 class Blockchain {
 constructor() {
-    this.chain = [Block.genesis()]
+    this.chain = [Block.genesis()];
 }
 
 addBlock({ data }) {
@@ -19,11 +19,13 @@ addBlock({ data }) {
 static isValidChain(chain) {
 
 
-     if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis()))  return false;
+     if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
+
+      return false };
     
 
 
-    for (let i=0;i<chain.length;i++){
+    for (let i=1 ;i<chain.length;i++){
 
         
         const { timestamp, data, lastHash, hash} = chain[i];
@@ -35,7 +37,7 @@ static isValidChain(chain) {
 
     if (lastHash !== actualLastHash) return false;
 
-    const validatedHash = cryptoHash(lastHash, timestamp, data)
+    const validatedHash = cryptoHash(timestamp, data, timestamp)
 
     if( hash !== validatedHash)  return false;
 

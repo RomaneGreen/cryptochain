@@ -1,3 +1,5 @@
+
+
 const GENESIS_DATA = {
 
     timestamp : 1,
