@@ -43,7 +43,7 @@ static isValidChain(chain) {
     for (let i=1 ;i<chain.length;i++){
 
         
-        const { timestamp, data, lastHash, hash} = chain[i];
+        const { timestamp, data, lastHash, hash, nonce, difficulty} = chain[i];
         
         const actualLastHash = chain[i-1].hash;
         
@@ -52,7 +52,7 @@ static isValidChain(chain) {
 
     if (lastHash !== actualLastHash) return false;
 
-    const validatedHash = cryptoHash(timestamp, data, timestamp)
+    const validatedHash = cryptoHash(timestamp, data, timestamp, nonce, difficulty)
 
     if( hash !== validatedHash)  return false;
 

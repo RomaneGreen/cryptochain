@@ -16,28 +16,25 @@ class Block {
     }
 
      static mineBlock({lastBlock, data}) {
-             const timestamp = Date.now()
+                let hash,timestamp;
              const lastHash = lastBlock.hash
              const { difficulty } = lastBlock;
              let nonce = 0;
-
-                return new this({
-                timestamp,
-                lastHash,
-                difficulty,
-                nonce,
-                data,
-                hash: cryptoHash(timestamp,lastHash, data, nonce, difficulty)
-                })
+            do {
+                nonce++
+                timestamp = Date.now()
+                hash = cryptoHash(timestamp,lastHash,data,nonce,difficulty)
+            } while (hash.substring(0,difficulty) !== '0'.repeat(difficulty))
+                return new this({ timestamp,lastHash,difficulty,nonce, data })
          }
         }
-const  block1 = new Block({
-    hash:'foo-lastHash',
-    lastHash:'foo-hash',
-    timestamp:'01/01/01',
-    data:'foo-data'
-})
+// const  block1 = new Block({
+//     hash:'foo-lastHash',
+//     lastHash:'foo-hash',
+//     timestamp:'01/01/01',
+//     data:'foo-data'
+// })
 
-console.log(block1)
+// console.log(block1)
 
 module.exports = Block;
