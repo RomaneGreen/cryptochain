@@ -7,6 +7,8 @@ describe('Block',() => {
     const lastHash = 'foo-hash';
     const hash = 'bar-hash';
     const data = ['blockchain','data'];
+    const nonce = 1;
+    const dificulty = 1;
     const block = new Block({ timestamp, lastHash, hash, data})
 
     it('has timestamp hash lasthash and data property',() => {
