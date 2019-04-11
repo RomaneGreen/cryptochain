@@ -36,7 +36,9 @@ static isValidChain(chain) {
 
      if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
 
-      return false };
+      return false 
+    
+    };
     
 
 
@@ -47,7 +49,7 @@ static isValidChain(chain) {
         
         const actualLastHash = chain[i-1].hash;
         
-
+        const lastDifficulty = chain[i-1].difficulty
     }
 
     if (lastHash !== actualLastHash) return false;
@@ -56,9 +58,12 @@ static isValidChain(chain) {
 
     if( hash !== validatedHash)  return false;
 
-                return true
-}
+            
 
-}
 
+    if(Math.abs(lastDifficulty - difficulty) > 1) 
+        return false
+    
+}
+}
 module.exports = Blockchain;
