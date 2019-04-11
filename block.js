@@ -15,8 +15,9 @@ class Block {
             return new this(GENESIS_DATA);
     }
 
-     static mineBlock({lastBlock, data}) {
-                let hash,timestamp;
+     static mineBlock({ lastBlock, data }) {
+
+            let hash,timestamp;
              const lastHash = lastBlock.hash
              const { difficulty } = lastBlock;
              let nonce = 0;
@@ -25,7 +26,13 @@ class Block {
                 timestamp = Date.now()
                 hash = cryptoHash(timestamp,lastHash,data,nonce,difficulty)
             } while (hash.substring(0,difficulty) !== '0'.repeat(difficulty))
-                return new this({ timestamp,lastHash,difficulty,nonce, data })
+                return new this({ 
+                    timestamp,
+                    lastHash,
+                    difficulty,
+                    nonce,
+                    hash })
+                    // cryptoHash(timestamp, lastHash, data, nonce, difficulty) })
          }
         }
 // const  block1 = new Block({
