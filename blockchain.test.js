@@ -91,7 +91,7 @@ describe('Blockchain', () => {
          })
        })
      })
-    })
+
     describe('repxlaceChain()',() => {
 
       let errorMock, logMock;
@@ -125,7 +125,7 @@ describe('Blockchain', () => {
            newChain.addBlock({ data: 'battlstar'});
 
          })
-
+        })
           describe('and chain is invalid', () => {
 
             beforeEach(() => {
@@ -152,4 +152,6 @@ describe('Blockchain', () => {
           })
         })
     
-   
+      })
+    })
+  
