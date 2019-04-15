@@ -20,7 +20,7 @@ class Block {
 
             let hash,timestamp;
              const lastHash = lastBlock.hash
-             const { difficulty } = lastBlock;
+             let { difficulty } = lastBlock;
              let nonce = 0;
 
             do {

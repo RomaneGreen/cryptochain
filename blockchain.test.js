@@ -90,7 +90,7 @@ describe('Blockchain', () => {
       
          })
        })
-     })
+     
 
     describe('repxlaceChain()',() => {
 
@@ -103,7 +103,7 @@ describe('Blockchain', () => {
         global.console.error = errorMock;
         global.console.log = logMock;
       })
-
+    
         describe('when new chain is not longer',() => {
 
           beforeEach(() => {
@@ -117,7 +117,8 @@ describe('Blockchain', () => {
           it('logs an error', () => {
             expect(errorMock).toHaveBeenCalled()
           })
-        })
+        
+      
         describe('when the new chain is longer',()=> {
           beforeEach(() => {
            newChain.addBlock({ data: 'bears'})
@@ -125,7 +126,8 @@ describe('Blockchain', () => {
            newChain.addBlock({ data: 'battlstar'});
 
          })
-        })
+         })
+      
           describe('and chain is invalid', () => {
 
             beforeEach(() => {
@@ -146,12 +148,17 @@ describe('Blockchain', () => {
                
                 expect(blockchain.chain).toEqual(newChain.chain)
             })
+          
             it('logs about the chain replacement', () => {
               expect(logMock).toHaveBeenCalled();
             })
           })
         })
-    
+      })
       })
     })
+  })
+
+    
+
   
