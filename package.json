@@ -6,8 +6,8 @@
   "scripts": {
     "start": " node index.js ",
     "test": "jest --watchAll",
-    "dev": " npm run start-redis && nodemon index.js ",
-    "start-redis": " redis-server --dameonize yes "
+    "dev": "npm run start-redis && nodemon index.js ",
+    "start-redis": "redis-server --daemonize yes "
   },
   "keywords": [],
   "author": "",
