@@ -63,7 +63,7 @@ describe('Blockchain', () => {
       expect(Blockchain.isValidChain(blockchain.chain)).toBe(false)
     })
   })
-
+    
      describe(' and chain contains a block with jumped difficulty', () => {
  
       it('returns false',() => {
@@ -83,7 +83,7 @@ describe('Blockchain', () => {
 
     })
     })
-      
+  
     describe('and the chain does not contain any invalid blocks', () => {
           it('returns true',() => {
               expect(Blockchain.isValidChain(blockchain.chain)).toBe(true)
@@ -91,7 +91,7 @@ describe('Blockchain', () => {
          })
        })
      
-
+      
     describe('repxlaceChain()',() => {
 
       let errorMock, logMock;
@@ -118,7 +118,7 @@ describe('Blockchain', () => {
             expect(errorMock).toHaveBeenCalled()
           })
         
-      
+        
         describe('when the new chain is longer',()=> {
           beforeEach(() => {
            newChain.addBlock({ data: 'bears'})
@@ -126,8 +126,8 @@ describe('Blockchain', () => {
            newChain.addBlock({ data: 'battlstar'});
 
          })
-         })
-      
+         
+        
           describe('and chain is invalid', () => {
 
             beforeEach(() => {
@@ -144,7 +144,7 @@ describe('Blockchain', () => {
             beforeEach(() =>{
               blockchain.replaceChain(newChain.chain)
             })
-            it('replaces the chain', () => {
+            it('replaaces the chain', () => {
                
                 expect(blockchain.chain).toEqual(newChain.chain)
             })
@@ -159,6 +159,6 @@ describe('Blockchain', () => {
     })
   })
 
-    
+})
 
   

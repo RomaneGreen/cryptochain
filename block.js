@@ -16,10 +16,10 @@ class Block {
             return new this(GENESIS_DATA);
     }
 
-     static mineBlock({ lastBlock, data }) {
+     static mineBlock({ lastBlock, data, }) {
 
             let hash,timestamp;
-             const lastHash = lastBlock.hash
+             let lastHash = lastBlock.hash
              let { difficulty } = lastBlock;
              let nonce = 0;
 
