@@ -10,13 +10,14 @@ describe('Blockchain', () => {
    blockchain = new Blockchain();
    newChain = new Blockchain();
    errorMock = jest.fn()
-   logMock = jest.fn
+   logMock = jest.fn()
    originalChain = blockchain.chain;
    global.console.error = errorMock;
+   global.console.log = logMock;
 
   })
 
-
+ 
   it('contains a `chain` array instance', () => {
     expect(blockchain.chain instanceof Array).toBe(true);
   })
@@ -40,7 +41,7 @@ describe('Blockchain', () => {
       blockchain.chain[0] = { data: 'fake-genesis'};
       expect(Blockchain.isValidChain(blockchain.chain)).toBe(false)
     })
-  })
+  
     describe('when chain starts with genesis block and has multiple blocks',() => {
    
     beforeEach(() => {
@@ -64,7 +65,7 @@ describe('Blockchain', () => {
       expect(Blockchain.isValidChain(blockchain.chain)).toBe(false)
     })
   })
-    
+})
      describe(' and chain contains a block with jumped difficulty', () => {
  
       it('returns false',() => {
@@ -120,6 +121,7 @@ describe('Blockchain', () => {
           it('logs an error', () => {
             expect(errorMock).toHaveBeenCalled()
           })
+         
         })
         
         describe('when the new chain is longer',()=> {
@@ -152,6 +154,9 @@ describe('Blockchain', () => {
 
           describe('and chain is valid', () => {
             beforeEach(() =>{
+              let logMock;
+              logMock = jest.fn()
+              global.console.log(logMock)
               blockchain.replaceChain(newChain.chain)
             })
 
