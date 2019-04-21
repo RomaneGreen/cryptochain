@@ -14,6 +14,8 @@ class PubSub {
         this.publisher = redis.createClient();
         this.subscriber = redis.createClient();
 
+
+
         this.subscribeToChannels()
 
 
@@ -25,12 +27,14 @@ class PubSub {
     }
     handleMessage( channel , message ) {
         console.log(`Message recieved. Channel: ${channel}. Message: ${message}.`)
-
+        
         const parsedMessage = JSON.parse(message);
 
         if (channel === CHANNELS.BLOCKCHAIN) {
             this.blockchain.replaceChain(parsedMessage)
         }
+
+      
     }
 
     subscribeToChannels() {
@@ -50,11 +54,11 @@ class PubSub {
 
         })
     }
+
+
 }
 
-//  const testPubSub = new PubSub();
 
-//  setTimeout(() => testPubSub.publisher.publish(CHANNELS.TEST, 'foo'),1000)
 
 
 module.exports = PubSub;
