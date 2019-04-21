@@ -61,8 +61,8 @@ describe('Blockchain', () => {
       describe('and the chain contains block with an invalid field', () => {
       it('returns false',() => {
         blockchain.chain[2].data = 'some-bad-and-evil-data'
+        expect(Blockchain.isValidChain(blockchain.chain)).toBe(false)
       })
-      expect(Blockchain.isValidChain(blockchain.chain)).toBe(false)
     })
   })
 })
@@ -98,16 +98,7 @@ describe('Blockchain', () => {
       
     describe('replaceChain()',() => {
 
-      let logMock;
-
-      beforeEach(() => {
-            
-        logMock = jest.fn();
-
-        global.console.log = logMock;
-      })
-      
-      
+     
         describe('when the new chain is not longer',() => {
 
           beforeEach(() => {
