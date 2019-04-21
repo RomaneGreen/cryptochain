@@ -63,7 +63,7 @@ describe('Block',() => {
         it('creates a sha256 hash based on proper inputs',() => {
             expect(minedBlock.hash).toEqual(cryptoHash(minedBlock.timestamp,
                 lastBlock.hash,
-                mineBlock.nonce,    
+                minedBlock.nonce,    
                 minedBlock.difficulty,
                 data
             ))
