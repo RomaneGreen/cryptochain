@@ -117,9 +117,9 @@ describe('Blockchain', () => {
         
         describe('when the new chain is longer',()=> {
           beforeEach(() => {
-           newChain.addBlock({ data: 'bears'})
-           newChain.addBlock({ data: 'beets'})
-           newChain.addBlock({ data: 'battlstar Galatica'});
+           newChain.addBlock({ data: 'Bears'})
+           newChain.addBlock({ data: 'Beets'})
+           newChain.addBlock({ data: 'Battlstar Galatica'});
 
          })
          
@@ -152,8 +152,7 @@ describe('Blockchain', () => {
             })
 
             it('replaces the chain', () => {
-               
-                expect(blockchain.chain).toEqual(newChain.chain)
+              expect(blockchain.chain).toEqual(newChain.chain)
             })
             it('logs about the chain replacement', () => {
               expect(logMock).toHaveBeenCalled();
