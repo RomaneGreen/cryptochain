@@ -52,8 +52,11 @@ app.post('/api/transact',(req,res) => {
 
     const {amount,recipient} = req.body
 
-    let transaction;
+    let transaction = transactionPool.existingTransaction({ inputAddress : wallet.publicKey})
     try {
+        if(transaction) {
+            transaction.update({ senderWallet: wallet, recipient , amount })
+        }
         transaction  = wallet.createTransaction({ amount , recipient })
 
     }catch(error){
@@ -64,7 +67,7 @@ app.post('/api/transact',(req,res) => {
     transactionPool.setTransaction(transaction)
     console.log('transactionpool', transactionPool)
 
-    res.json({ type:success, transaction })
+    res.json({ type:'success', transaction })
 })
 let PEER_PORT; 
 
