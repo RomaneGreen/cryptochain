@@ -3,11 +3,13 @@ const Blockchain = require('./blockchain/index')
 const request = require('request')
 const bodyParser = require('body-parser')
 const PubSub = require('./app/pubsub')
-
+const TransactionPool = require('./wallet/transaction-pool')
+const transactionPool = new TransactionPool()
 const app = express();
 const blockchain = new Blockchain();
 const pubsub = new PubSub({ blockchain })
-
+const Wallet = require('./wallet')
+const wallet = new Wallet()
 const DEFAULT_PORT = 3000
 
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`
@@ -46,7 +48,16 @@ res.redirect('/api/blocks')
 
 })
 
+app.post('/api/transact',(req,res) => {
 
+    const {amount,recipient} = req.body
+    const transaction  = wallet.createTransaction({ amount , recipient })
+
+    transactionPool.setTransaction(transaction)
+    console.log('transactionpool', transactionPool)
+
+    res.json({ transaction })
+})
 let PEER_PORT; 
 
 if (process.env.GENERATE_PEER_PORT === 'true') {
