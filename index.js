@@ -51,12 +51,20 @@ res.redirect('/api/blocks')
 app.post('/api/transact',(req,res) => {
 
     const {amount,recipient} = req.body
-    const transaction  = wallet.createTransaction({ amount , recipient })
 
+    let transaction;
+    try {
+        transaction  = wallet.createTransaction({ amount , recipient })
+
+    }catch(error){
+      return  res.status(400).json({type: error, message: error.message})
+    }
+    
+    
     transactionPool.setTransaction(transaction)
     console.log('transactionpool', transactionPool)
 
-    res.json({ transaction })
+    res.json({ type:success, transaction })
 })
 let PEER_PORT; 
 
