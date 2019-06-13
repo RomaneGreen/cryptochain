@@ -1,5 +1,5 @@
 const Wallet = require('./index')
-const  { verifySignature } = require('../util/index')
+const  { verifySignature } = require('../util')
 
 describe( 'wallet' ,() => {
 
