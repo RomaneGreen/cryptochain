@@ -7,7 +7,7 @@ const TransactionPool = require('./wallet/transaction-pool')
 const transactionPool = new TransactionPool()
 const app = express();
 const blockchain = new Blockchain();
-const pubsub = new PubSub({ blockchain })
+const pubsub = new PubSub({ blockchain, transactionPool })
 const Wallet = require('./wallet')
 const wallet = new Wallet()
 const DEFAULT_PORT = 3000
@@ -65,9 +65,15 @@ app.post('/api/transact',(req,res) => {
     
     
     transactionPool.setTransaction(transaction)
-    console.log('transactionpool', transactionPool)
+
+    pubsub.broadcastTransaction(transaction)
 
     res.json({ type:'success', transaction })
+})
+
+
+app.get('/api/transaction-pool-map',(req,res) => {
+    res.json(transactionPool.transactionMap)
 })
 let PEER_PORT; 
 
