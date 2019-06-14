@@ -1,5 +1,5 @@
 const redis = require('redis')
-
+const wallet = require('../wallet')
 
 const CHANNELS = {
     TEST: 'TEST',
@@ -7,8 +7,9 @@ const CHANNELS = {
     TRANSACTION: 'TRANSACTION'
 }
 
+
 class PubSub {
-    constructor({ blockchain,transactionPool, wallet }) {
+    constructor({ blockchain,transactionPool, wallets }) {
 
         this.blockchain = blockchain
         this.transactionPool = transactionPool
