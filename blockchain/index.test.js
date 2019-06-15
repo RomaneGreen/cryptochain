@@ -121,7 +121,7 @@ describe('Blockchain', () => {
            newChain.addBlock({ data: 'Beets'})
            newChain.addBlock({ data: 'Battlstar Galatica'});
 
-         })
+         
          
         
           describe('and chain is invalid', () => {
@@ -154,6 +154,8 @@ describe('Blockchain', () => {
             it('replaces the chain', () => {
               expect(blockchain.chain).toEqual(newChain.chain)
             })
+
+          })
             it('logs about the chain replacement', () => {
               expect(logMock).toHaveBeenCalled();
             })
