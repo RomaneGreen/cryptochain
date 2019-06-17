@@ -1,19 +1,20 @@
-const express = require('express')
-const Blockchain = require('./blockchain/index')
-const request = require('request')
 const bodyParser = require('body-parser')
+const express = require('express')
+const request = require('request')
+const Blockchain = require('./blockchain')
 const PubSub = require('./app/pubsub')
 const TransactionPool = require('./wallet/transaction-pool')
+const Wallet = require('./wallet')
 const TransactionMiner = require('./app/transaction-miner')
 
 
 const app = express();
-const transactionPool = new TransactionPool()
-const Wallet = require('./wallet')
 const blockchain = new Blockchain();
+const transactionPool = new TransactionPool()
 const wallet = new Wallet()
 const pubsub = new PubSub({ blockchain, transactionPool, wallet })
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, pubsub, wallet})
+
 const DEFAULT_PORT = 3000
 
 const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`
@@ -62,9 +63,9 @@ app.post('/api/transact',(req,res) => {
     try {
         if(transaction) {
             transaction.update({ senderWallet: wallet, recipient , amount })
+        }else  {
+        transaction  = wallet.createTransaction({ amount , recipient, chain: blockchain.chain })
         }
-        transaction  = wallet.createTransaction({ amount , recipient })
-
     }catch(error){
       return  res.status(400).json({type: error, message: error.message})
     }
