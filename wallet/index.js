@@ -34,9 +34,7 @@ class Wallet {
    static calculateBalance({ chain, address }) {
 
     let hasConductedTransaction = false 
-    let outPutsTotal = 0;
-
-
+  
    let outputsTotal = 0;
 
 
