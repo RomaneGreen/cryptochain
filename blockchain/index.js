@@ -1,7 +1,7 @@
 const Block = require('./block');
-const cryptoHash = require('../util/crypto-hash')
-const { REWARD_INPUT, MINING_REWARD } = require('../config')
 const Transaction = require('../wallet/transaction')
+const {cryptoHash } = require('../util')
+const { REWARD_INPUT, MINING_REWARD } = require('../config')
 const Wallet = require('../wallet')
 
 class Blockchain {
@@ -18,7 +18,7 @@ addBlock({ data }) {
    this.chain.push(newBlock)
 }
 
-replaceChain(chain, onSuccess ){
+replaceChain(chain,validateTransactions, onSuccess ){
     if (chain.length <= this.chain.length){
         console.error("The incoming chain must be longer")
         return;
@@ -29,11 +29,17 @@ replaceChain(chain, onSuccess ){
         return;
     }
 
-        if (onSuccess) onSuccess()
+    if ( validateTransactions && !this.validTransactionData({ chain })) {
+        console.error('incoming chain has invalid transaction data')
+        return;
+    }
+
+        if (onSuccess)    onSuccess() 
     console.log('replacing chain with', chain)
     this.chain = chain;
-
+        
 }
+
 validTransactionData({ chain }) {
 
     for(let i = 1; i < chain.length; i++) {
@@ -43,7 +49,7 @@ validTransactionData({ chain }) {
 
 
             for (let transaction of block.data) {
-                if(transaction.input.address === REWARD_INPUT.address) {
+                if (transaction.input.address === REWARD_INPUT.address) {
                     rewardTransactionCount +=  1
                 
 
@@ -102,7 +108,7 @@ static isValidChain(chain) {
 
     if (lastHash !== actualLastHash) return false;
 
-    const validatedHash = cryptoHash(timestamp, data, timestamp, nonce, difficulty)
+    const validatedHash = cryptoHash(timestamp, data, lastHash, nonce, difficulty)
 
     if( hash !== validatedHash)  return false;
 
@@ -111,7 +117,6 @@ static isValidChain(chain) {
     }
          return true
 }   
-
 
 }
 module.exports = Blockchain;

@@ -16,10 +16,11 @@ class Block {
             return new this(GENESIS_DATA);
     }
 
-     static mineBlock({ lastBlock, data, }) {
+     static mineBlock({ lastBlock, data }) {
+
+         const lastHash = lastBlock.hash
 
             let hash,timestamp;
-             let lastHash = lastBlock.hash
              let { difficulty } = lastBlock;
              let nonce = 0;
 
@@ -47,7 +48,7 @@ class Block {
             if (difficulty < 1) return 1;
 
 
-            if (timestamp - originalBlock.timestamp > MINE_RATE ) return difficulty - 1;
+            if ((timestamp - originalBlock.timestamp) > MINE_RATE ) return difficulty - 1;
             return difficulty + 1;
          }
         }
