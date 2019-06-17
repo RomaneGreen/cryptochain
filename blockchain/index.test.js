@@ -258,12 +258,15 @@ describe('Blockchain', () => {
           })
         })
           describe('and block contains multiple idential transactions', () => {
-            it('should return false and log an error', ()=> { })
+            it('should return false and log an error', ()=> { 
 
+            newChain.addBlock({data: [transaction, transaction, transaction, rewardTransaction]})
+            expect(blockchain.validTransactionData({ chain: newChain.chain })).toBe(false)
+            expect(errorMock).toHaveBeenCalled()
           
           })
           })
-
+        })
 
 
 

@@ -38,6 +38,7 @@ validTransactionData({ chain }) {
 
     for(let i = 1; i < chain.length; i++) {
             const block = chain[i]
+            const transactionSet = new Set()
             let rewardTransactionCount = 0 
 
 
@@ -68,6 +69,13 @@ validTransactionData({ chain }) {
                     console.error('invalid input amount')
                     return false
                 
+                }
+                if (transactionSet.has(transaction)) {
+
+                    console.error('idential transaction already appears more than once in a block ')
+                    return false
+                } else {
+                    transactionSet.add(transaction)
                 }
             }
         }   
