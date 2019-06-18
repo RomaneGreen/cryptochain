@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Blocks from './Blocks'
-import ReactDOM from 'react-dom'
 
+import logo from '../assets/logo.png'
 
 export default class App extends Component {
 
@@ -22,10 +22,15 @@ export default class App extends Component {
      
     const { address, balance } = this.state.walletInfo
     return (
-      <div>
+      <div className="App">
+        <img src={logo} className="logo"></img> 
+        <br />
       <div>  Welcome to the blockhain... </div>
+      <br />
+      <div className = "WalletInfo">
         <div>Address: {address} </div>
          <div>Balance: {balance} </div>
+         </div>
          <br />
          <Blocks />
       </div>
