@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
-import Blocks from './Blocks'
-
+import React, { Component } from 'react' 
+import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
 export default class App extends Component {
 
   state = {
-      walletInfo: { address: null, balance: null }
+      walletInfo: {}
   }
 
   
@@ -27,12 +26,15 @@ export default class App extends Component {
         <br />
       <div>  Welcome to the blockhain... </div>
       <br />
+      <div>
+        <Link to='/blocks'>Blocks</Link>
+      </div>
+      <br />
       <div className = "WalletInfo">
         <div>Address: {address} </div>
          <div>Balance: {balance} </div>
          </div>
-         <br />
-         <Blocks />
+        
       </div>
     )
   }
