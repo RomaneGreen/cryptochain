@@ -23,6 +23,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`
 setTimeout(() => pubsub.broadcastChain(), 1000)
 
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname,'client')))
 
 app.get('/api/blocks', (req,res) => {
 
@@ -102,8 +103,10 @@ app.get('/api/wallet-info',(req,res) => {
 })
 
 app.get('*', (req,res)=> {
-    res.sendFile(path.join(__dirname,'./client/index.html'))
+    res.sendFile(path.join(__dirname,'client/index.html'))
 })
+
+
 const PORT = PEER_PORT || DEFAULT_PORT;
 
 app.listen(PORT,() => {
