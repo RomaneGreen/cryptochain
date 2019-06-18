@@ -10,7 +10,7 @@ export default class App extends Component {
 
   
   componentDidMount() {
-    fetch('http://localhost:3000/api/wallet-info').then(response => response.json()).then( json => this.setState({
+    fetch(`${document.location.origin}/api/wallet-info`).then(response => response.json()).then( json => this.setState({
         walletInfo: json
     })
     ) 
@@ -30,7 +30,7 @@ export default class App extends Component {
       <div> <Link to='/conduct-transaction'>Conduct a transaction</Link></div>
       <div> <Link to='/transaction-pool'>Transaction Pool</Link></div>
 
-      <br />
+      <br />  
       <div className = "WalletInfo">
         <div>Address: {address} </div>
          <div>Balance: {balance} </div>
