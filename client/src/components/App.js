@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import Blocks from './Blocks'
 import ReactDOM from 'react-dom'
 
 
 export default class App extends Component {
 
   state = {
-      walletInfo: { address: 'foov6', balance: 9999 }
+      walletInfo: { address: null, balance: null }
   }
 
   
@@ -18,13 +19,15 @@ export default class App extends Component {
   }
   
   render() {
-
+     
     const { address, balance } = this.state.walletInfo
     return (
       <div>
       <div>  Welcome to the blockhain... </div>
         <div>Address: {address} </div>
          <div>Balance: {balance} </div>
+         <br />
+         <Blocks />
       </div>
     )
   }
