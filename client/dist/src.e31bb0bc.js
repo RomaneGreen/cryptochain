@@ -46973,6 +46973,26 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "conductTransaction", function () {
+      var _this$state = _this.state,
+          recipient = _this$state.recipient,
+          amount = _this$state.amount;
+      fetch('http://localhost:3000/api/transact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          recipient: recipient,
+          amount: amount
+        })
+      }).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        alert(json.message || json.type);
+      });
+    });
+
     return _this;
   }
 
@@ -46994,7 +47014,10 @@ function (_Component) {
         placeholder: "amount",
         value: this.state.amount,
         onChange: this.updateAmount
-      })));
+      })), _react.default.createElement("div", null, _react.default.createElement(_reactBootstrap.Button, {
+        onClick: this.conductTransaction,
+        bsStyle: "danger"
+      }, "Submit")));
     }
   }]);
 
