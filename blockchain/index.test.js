@@ -109,7 +109,7 @@ describe('Blockchain', () => {
             beforeEach(() => {
               logMock = jest.fn()
               
-                global.console.log = logMock
+                global.console.log = logMock;
             })
 
         describe('when the new chain is not longer',() => {
