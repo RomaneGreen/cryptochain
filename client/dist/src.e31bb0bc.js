@@ -47109,10 +47109,15 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // this.fetchTransactionPoolMap()
-      setInterval(function () {
+      this.fetchTransactionPoolMap();
+      this.fetchTransactionPoolMapInterval = setInterval(function () {
         return _this2.fetchTransactionPoolMap();
       }, POLL_INTERVAL_MS);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      clearInterval(this.fetchTransactionPoolMapInterval);
     }
   }, {
     key: "render",
