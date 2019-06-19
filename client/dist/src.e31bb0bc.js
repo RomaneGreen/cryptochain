@@ -47041,7 +47041,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _reactBootstrap = require("react-bootstrap");
+
 var _Transaction = _interopRequireDefault(require("./Transaction"));
+
+var _history = _interopRequireDefault(require("../history"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47101,6 +47105,18 @@ function (_Component) {
       });
     });
 
+    _defineProperty(_assertThisInitialized(_this), "fetchMineTransactions", function () {
+      fetch("".concat(document.location.origin, "/api/mine-transactions")).then(function (response) {
+        if (response.status === 200) {
+          alert('success');
+
+          _history.default.push('./blocks');
+        } else {
+          alert('mine transactions block request did not complete');
+        }
+      });
+    });
+
     return _this;
   }
 
@@ -47132,7 +47148,10 @@ function (_Component) {
         }, _react.default.createElement("hr", null), _react.default.createElement(_Transaction.default, {
           transaction: transacton
         }));
-      }));
+      }), _react.default.createElement(_reactBootstrap.Button, {
+        onClick: this.fetchMineTransactions,
+        bsStyle: "danger"
+      }, "Mine the transactions"));
     }
   }]);
 
@@ -47140,7 +47159,7 @@ function (_Component) {
 }(_react.Component);
 
 exports.default = TransactionPool;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/es/index.js","./Transaction":"components/Transaction.js"}],"index.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/es/index.js","react-bootstrap":"../../node_modules/react-bootstrap/es/index.js","./Transaction":"components/Transaction.js","../history":"history.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireWildcard(require("react"));
