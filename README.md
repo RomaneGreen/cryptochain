@@ -1,5 +1,5 @@
 ## Cryptochain
-crypto application
+Blockchain application built with react front end and node js backend
 
 ## USER STORIES
 
