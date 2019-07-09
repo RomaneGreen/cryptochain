@@ -1,0 +1,45 @@
+
+
+
+body {
+    background-color: #444;
+    text-align:center;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Quicksand';
+    padding-top: 5%;
+    word-wrap: break-word;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logo {
+    width: 250px;
+    height: 250px;
+}
+
+.WalletInfo {
+    width: 500px;
+}
+
+.Block {
+    border : 1px solid white;
+    padding: 5%;
+    margin: 2%;
+}
+
+.Transaction,.TransactionPool {
+    padding: 5%
+}
+
+a, a:hover {
+    color: #e666;
+    text-decoration: underline;
+}
+
+.ConductTransaction {
+    margin: 10%;
+}
